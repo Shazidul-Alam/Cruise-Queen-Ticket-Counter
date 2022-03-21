@@ -61,7 +61,7 @@
                     <input id="first-classNumber" class="inp-style inp-width" type="number" value="0" name=""> 
                 </div>
                 <div class="plus-minus-btn">
-                    <p><span id="first-classIncrease"> + </span><span id="first-classDecrease">-</span> </p>
+                    <p><span onclick="amountChangeHandler('first',true)"> + </span><span onclick="amountChangeHandler('first',false)">-</span> </p>
                 </div>
             </div>
             
@@ -71,7 +71,7 @@
                     <input class="inp-style inp-width" type="number" value="0" name="" id="economy-classNumber"> 
                 </div>
                 <div class="plus-minus-btn">
-                    <p> <span id="economy-classIncrease">+</span> <span id="economy-classDecrease">-</span> </p>
+                    <p> <span onclick="amountChangeHandler('economy',true)">+</span> <span onclick="amountChangeHandler('economy',false)">-</span> </p>
                 </div>
             </div>
             <div class="calculations">
@@ -106,46 +106,7 @@
         </div>
     </main>
     <script>
-             document.getElementById("first-classIncrease").addEventListener('click',function(){
-             let get= document.getElementById('first-classNumber').value;
-             let getInt= parseInt(get);
-             let Increment= getInt + 1;
-             document.getElementById('first-classNumber').value=Increment;
-             calculateTotal();
-             
             
-         })
-         document.getElementById("first-classDecrease").addEventListener('click',function(){
-             let get= document.getElementById('first-classNumber').value;
-             let getInt= parseInt(get);
-             let Increment= getInt - 1;
-             document.getElementById('first-classNumber').value=Increment;
-             calculateTotal();
-             
-          
-         })
-
-         document.getElementById("economy-classIncrease").addEventListener('click',function(){
-             let get= document.getElementById('economy-classNumber').value;
-             let getInt= parseInt(get);
-             let Increment= getInt + 1;
-             document.getElementById('economy-classNumber').value=Increment;
-             calculateTotal();
-             
-            
-            })
-            document.getElementById("economy-classDecrease").addEventListener('click',function(){
-             let get= document.getElementById('economy-classNumber').value;
-             let getInt= parseInt(get);
-             let Increment= getInt - 1;
-             document.getElementById('economy-classNumber').value=Increment;
-             calculateTotal();
-             
-         })
-
-
-
-
          function calculateTotal(){
              const getFirstClassCount=document.getElementById('first-classNumber').value;
              const firstClassNumber= parseInt(getFirstClassCount);
@@ -163,12 +124,21 @@
              document.getElementById('grand-total').innerText='$'+ grandTotal;
 
          }
-
-        
-        
+         function amountChangeHandler(product,isIncrease){
+            let get= document.getElementById(product+'-classNumber').value;
+             let getInt= parseInt(get);
+             let Increment= getInt;
+             if(isIncrease == true){
+                 Increment= getInt +1;
+             }
+             if(isIncrease==false && getInt>0){
+                Increment= getInt - 1;
+             }
+             document.getElementById(product+'-classNumber').value=Increment;
+             calculateTotal();
+         }
 
     </script>
-
     
 </body>
 
