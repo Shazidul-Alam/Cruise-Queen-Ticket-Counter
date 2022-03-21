@@ -108,13 +108,7 @@
     <script>
             
          function calculateTotal(){
-             const getFirstClassCount=document.getElementById('first-classNumber').value;
-             const firstClassNumber= parseInt(getFirstClassCount);
-
-             const getEconomyClassCount=document.getElementById('economy-classNumber').value;
-             const economyClassNumber= parseInt(getEconomyClassCount);
-
-             const total= (firstClassNumber*150) + (economyClassNumber*100);
+             const total= getClassName('first')*150 + getClassName('economy')*100;
              document.getElementById('subtotal').innerText=total;
 
              const tax= total*0.10;
@@ -136,6 +130,12 @@
              }
              document.getElementById(product+'-classNumber').value=Increment;
              calculateTotal();
+         }
+         
+         function getClassName(className){
+            const getClassCount=document.getElementById(className+'-classNumber').value;
+            const ClassNumber= parseInt(getClassCount);
+            return ClassNumber;
          }
 
     </script>
